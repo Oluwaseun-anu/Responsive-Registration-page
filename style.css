@@ -1,0 +1,228 @@
+/* Universal box-sizing for easier layout */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+body {
+    
+    margin: 0; /* Remove default body margin */
+    font-family: 'Poppins', sans-serif;
+    background-image: url('assets/images/favicon-32x32.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    text-align: center;
+    padding: 100px 50px;
+}
+.content {
+    background-color: hsl(0, 100%, 74%);
+    font-size: 16px; 
+    text-align: center;
+    padding: 0 10%;
+    /* font-family: ; */
+    background-image: url('assets/images/bg-intro-desktop.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: 1200px; /* Max width for desktop content */
+    margin-bottom: 20px; /* Space above footer */
+    gap: 50px;/* Space between left and right sections */
+}
+.flex-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    text-align: left;
+    color: white;
+    width: 50%;
+    padding-right: 20px; /* Space from the form */
+}
+
+.flex-item p { /* Target the paragraph specifically */
+    font-weight: 400; /* Lighter font weight */
+    line-height: 1.6;
+}
+
+.flex-item2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    padding: 80px 0px;
+
+}
+h1 {
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.advert {
+    padding: 15px 40px;
+    background-color: hsl(248, 32%, 49%);
+    font-weight: 400;
+    border-radius: 8px;
+    box-shadow: 0 8px 0 rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.advert p {
+    color: white;
+    margin: 0;
+}
+.advert strong {
+    font-weight: 700;
+}
+
+.form-container { /* Wrapper for form and terms text */
+    width: 100%;
+    margin-top: 20px;
+}
+
+form { /* Styling for the form itself */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 0 rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+.input-group {
+    position: relative;
+    width: 100%;
+    margin-bottom: 5px; /* Space between input groups */
+}
+input {
+    width: 100%;
+    padding: 15px 25px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border-color: 1px solid hsl(246, 25%, 77%);
+    cursor: pointer;
+    font-weight: 600;
+    color: hsl(249, 10%, 26%); /* Darker text color */
+    outline: none;
+}
+
+.trial {
+    background-color: hsl(154, 59%, 51%);
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 10px;
+    margin-bottom: 0; /* No bottom margin, let parent handle spacing */
+    font-weight: 600;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 0 hsl(154, 59%, 45%);
+    transition: background-color 0.2s ease;
+    width: 100%; /* Make button full width */
+    border-radius: 5px; /* Match input border radius */
+    
+}.trial:hover {
+    background-color: hsl(154, 59%, 65%);
+}
+/* Error state styles */
+input.error {
+    border-color: hsl(0, 100%, 74%); /* Red border for error */
+    background-image: url('./images/icon-error.svg');
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    padding-right: 45px; /* Make space for the icon */
+}
+
+.error-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none; /* Hidden by default, shown with JS */
+}
+.error-icon.visible {
+    display: block;
+}
+
+.error-message {
+    color: hsl(0, 100%, 74%); /* Red error message */
+    font-size: 0.75em;
+    font-style: italic;
+    text-align: right;
+    margin-top: 5px;
+    display: block;
+}
+.terms-text { /* New class for the wrapping paragraph */
+    color: hsl(246, 25%, 77%); /* Darker text for this line */
+    font-size: 0.7em;
+    text-align: center;
+    margin-top: 10px;
+    line-height: 1.5; /* Improve readability */
+}
+.terms {
+    color: hsl(0, 100%, 74%); /* Red for the link */
+    font-weight: 700;
+    text-decoration: none; /* Remove underline */
+}
+
+
+
+ /* Use a media query to add a breakpoint at 800px: */
+ /* This applies when the viewport is 800px or smaller */
+@media screen and (max-width: 800px){
+body {
+    padding: 40px 20px;
+    background-image: url('assets/images/favicon-32x32.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.content {
+    background-color: hsl(0, 100%, 74%);
+    font-size: 16px; 
+    text-align: center;
+    background-image: url('assets/images/bg-intro-mobile.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+.flex-item {
+    align-items: center;
+    text-align: center;
+    padding-top: 50px;
+    padding-right: 0;
+    width: 100%;
+}
+.flex-item p {
+    font-size: 0.9em; /* Slightly smaller paragraph for mobile */
+}
+.flex-item2 {
+    width: 100%;
+    padding: 30px 0px;
+}
+h1 {
+    font-size: 1.5em; /* Smaller font size for mobile */
+    margin-bottom: 15px;
+}
+
+.advert {
+    padding: 15px 30px ;
+   
+}
+
+.form {
+    padding: 20px;
+}
+
+    
+}
+

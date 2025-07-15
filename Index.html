@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <title>Frontend Mentor | Intro component with sign up form</title>
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <link href="style.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .attribution { font-size: 11px; text-align: center; }
+        .attribution a { color: hsl(228, 45%, 44%); }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="flex-item">
+            <h1>Learn to code by watching others</h1>
+            <p>See how experienced developers solve problems in real-time. Watching scripted tutorials is great, 
+            but understanding how developers think is invaluable. </p>
+        </div>
+        <div class="flex-item2">
+            <div class="advert">
+                <p><strong>Try it free 7 days</strong> then $20/mo. thereafter</p>
+            </div>
+            <div  class="form-container">
+                <form id="signupForm"> 
+                    <div class="input-group">
+                        <input type="text" id="firstName" name="firstname" placeholder="First Name">
+                        <img src="assets/images/icon-error.svg" alt="error icon" class="error-icon hidden">
+                        <small class="error-message"></small>
+                    </div>
+                    <div class="input-group">
+                        <input type="text" id="lastName" name="lastname" placeholder="Last Name">
+                        <img src="assets/images/icon-error.svg" alt="error icon" class="error-icon hidden">
+                        <small class="error-message"></small>
+                    </div>
+                    <div class="input-group">
+                        <input type="email" id="emailAddress" name="email" placeholder="Email Address">
+                        <img src="assets/images/icon-error.svg" alt="error icon" class="error-icon hidden">
+                        <small class="error-message"></small>
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" name="password" placeholder="Password">
+                        <img src="assets/images/icon-error.svg" alt="error icon" class="error-icon hidden">
+                        <small class="error-message"></small>
+                    </div>
+                    <button type="submit" class="trial">CLAIM YOUR FREE TRIAL</button> 
+                    <p class="terms-text">By clicking the button, you are agreeing to our <a href="#" class="terms">Terms and Services</a></p>
+                </form>
+                
+            </div>
+        </div>
+    </div>
+      
+    <footer>
+        <p class="attribution">
+        Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+        Coded by <a href="#">Oluwaseun</a>.
+        </p>
+    </footer>
+    <script>
+        const form = document.getElementById('signupForm');
+        const firstName = document.getElementById('firstName');
+        const lastName = document.getElementById('lastName');
+        const emailAddress = document.getElementById('emailAddress');
+        const password = document.getElementById('password');
+
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent default form submission
+            validateInputs();
+        });
+
+        function validateInputs() {
+            const firstNameValue = firstName.value.trim();
+            const lastNameValue = lastName.value.trim();
+            const emailAddressValue = emailAddress.value.trim();
+            const passwordValue = password.value.trim();
+
+            let isValid = true; // Flag to check overall form validity
+
+            // Validate First Name
+            if (firstNameValue === '') {
+                setError(firstName, 'First Name cannot be empty');
+                isValid = false;
+            } else {
+                setSuccess(firstName);
+            }
+
+            // Validate Last Name
+            if (lastNameValue === '') {
+                setError(lastName, 'Last Name cannot be empty');
+                isValid = false;
+            } else {
+                setSuccess(lastName);
+            }
+
+            // Validate Email Address
+            if (emailAddressValue === '') {
+                setError(emailAddress, 'Email Address cannot be empty');
+                isValid = false;
+            } else if (!isValidEmail(emailAddressValue)) {
+                setError(emailAddress, 'Looks like this is not an email');
+                isValid = false;
+            } else {
+                setSuccess(emailAddress);
+            }
+
+            // Validate Password
+            if (passwordValue === '') {
+                setError(password, 'Password cannot be empty');
+                isValid = false;
+            } else {
+                setSuccess(password);
+            }
+
+            // If all inputs are valid, you can proceed with form submission (e.g., send data to a server)
+            if (isValid) {
+                // For this example, we'll just log a success message
+                console.log('Form submitted successfully!');
+                // In a real application, you might do:
+                // form.submit(); // If you want to submit the form after validation
+                // Or send data with fetch/XMLHttpRequest
+            }
+        }
+
+        function setError(element, message) {
+            const inputGroup = element.parentElement;
+            const errorDisplay = inputGroup.querySelector('.error-message');
+            const errorIcon = inputGroup.querySelector('.error-icon');
+
+            errorDisplay.innerText = message;
+            errorDisplay.style.display = 'block'; // Ensure message is visible
+            element.classList.add('error'); // Add error border class
+            errorIcon.classList.add('visible'); // Show error icon
+            element.setAttribute('placeholder', ''); // Remove placeholder on error as per design
+        }
+
+        function setSuccess(element) {
+            const inputGroup = element.parentElement;
+            const errorDisplay = inputGroup.querySelector('.error-message');
+            const errorIcon = inputGroup.querySelector('.error-icon');
+
+            errorDisplay.innerText = '';
+            errorDisplay.style.display = 'none'; // Hide message
+            element.classList.remove('error'); // Remove error border class
+            errorIcon.classList.remove('visible'); // Hide error icon
+            
+            // Restore placeholder if it was removed (you'd need to store original placeholders if doing this more robustly)
+            if (element.id === 'firstName') element.setAttribute('placeholder', 'First Name');
+            if (element.id === 'lastName') element.setAttribute('placeholder', 'Last Name');
+            if (element.id === 'emailAddress') element.setAttribute('placeholder', 'Email Address');
+            if (element.id === 'password') element.setAttribute('placeholder', 'Password');
+        }
+
+        function isValidEmail(email) {
+            // Simple regex for email validation
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+    </script>
+
+</body>
+</html>
